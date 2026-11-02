@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMC Liquidity Sweep Engine v2.8.22 — Command Center & Simulator</title>
+    <title>LMC Liquidity Sweep Engine v2.8.34 — Command Center & Simulator</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -35,19 +35,19 @@
             <div>
                 <div class="flex items-center space-x-2">
                     <h1 class="text-base font-bold tracking-wide text-white">LIVE MARKET COACH</h1>
-                    <span class="px-2 py-0.5 bg-tealaccent/10 border border-tealaccent/30 text-tealaccent text-[10px] font-bold rounded-md">v2.8.22</span>
+                    <span class="px-2 py-0.5 bg-tealaccent/10 border border-tealaccent/30 text-tealaccent text-[10px] font-bold rounded-md">v2.8.34</span>
                 </div>
                 <p class="text-xs text-gray-400" data-translate="sub_title">ICT Execution Engine & Visual Debugging Suite</p>
             </div>
         </div>
         <div class="flex items-center space-x-3">
             <!-- Language Switcher Button -->
-            <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-700 text-gray-200 text-xs font-semibold rounded-xl border border-gray-700 transition flex items-center space-x-1.5">
+            <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-semibold rounded-xl border border-gray-700 transition flex items-center space-x-1.5">
                 <i class="fa-solid fa-globe text-accent"></i> <span id="lang-text">RU / EN</span>
             </button>
             <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-darkbg border border-gray-800 rounded-lg text-xs text-gray-300">
                 <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                <span><span data-translate="state_label">STATE</span>: <strong class="text-accent" id="header-state">AWAITING SWEEP</strong></span>
+                <span><span data-translate="state_label">STATE</span>: <strong class="text-accent" id="header-state">STABLE RELEASE</strong></span>
             </div>
             <a href="https://gemini.google.com/notebook/f14d363c-43f3-4432-b14e-ee52ad2a15e6" target="_blank" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs rounded-xl transition flex items-center space-x-1.5 shadow-md">
                 <i class="fa-solid fa-code mr-1"></i> <span>NotebookLM</span>
@@ -85,11 +85,11 @@
                         <h2 class="text-lg font-bold text-white" data-translate="roadmap_title">Global Progress Tracker</h2>
                     </div>
                     <div class="text-xs text-gray-400 font-mono">
-                        <span data-translate="milestone_text">Current Milestone</span>: <strong class="text-tealaccent">Phase 4 / 5 Complete (88%)</strong>
+                        <span data-translate="milestone_text">Current Milestone</span>: <strong class="text-tealaccent">Stable Release v2.8.34 (100%)</strong>
                     </div>
                 </div>
                 <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-tealaccent to-accent h-full w-[88%] rounded-full"></div>
+                    <div class="bg-gradient-to-r from-tealaccent to-accent h-full w-full rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-2">
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between">
@@ -105,9 +105,9 @@
                         <p class="text-[11px] text-gray-400 leading-tight">Displacement Bar: 1.65x Yellow Candle Filter.</p>
                     </div>
                     <div class="bg-darkbg border-2 border-accent p-3.5 rounded-xl flex flex-col justify-between shadow-lg relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-accent text-darkbg text-[9px] font-bold px-2 py-0.5 rounded-bl">ACTIVE</div>
-                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-accent">v2.8.22</span><i class="fa-solid fa-wand-magic-sparkles text-accent text-xs"></i></div>
-                        <p class="text-[11px] text-gray-200 leading-tight">Minimalist HUD, Clean History & Risk Snapshot.</p>
+                        <div class="absolute top-0 right-0 bg-accent text-darkbg text-[9px] font-bold px-2 py-0.5 rounded-bl">STABLE</div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-accent">v2.8.34</span><i class="fa-solid fa-wand-magic-sparkles text-accent text-xs"></i></div>
+                        <p class="text-[11px] text-gray-200 leading-tight">Single Active Sweep, Auto-Cleanup & Direct On-Chart Labels.</p>
                     </div>
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between opacity-70">
                         <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-gray-400">v3.0.0</span><i class="fa-regular fa-clock text-gray-500 text-xs"></i></div>
@@ -162,7 +162,7 @@
                 <div class="lg:col-span-7 bg-cardbg border border-gray-800/80 p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-4">
                     <div class="flex items-center justify-between border-b border-gray-800/60 pb-3">
                         <span class="text-xs font-bold text-gray-400" data-translate="render_title">TRADINGVIEW RENDER HUD</span>
-                        <span class="text-[11px] font-mono text-tealaccent" id="preview-mode-tag">v2.8.22 Dynamic Alignment</span>
+                        <span class="text-[11px] font-mono text-tealaccent" id="preview-mode-tag">v2.8.34 Dynamic Alignment</span>
                     </div>
 
                     <div class="bg-darkbg border border-gray-800 rounded-xl p-5 relative min-h-[260px] flex flex-col justify-between overflow-hidden">
@@ -186,14 +186,14 @@
                             <div class="flex justify-between text-gray-300"><span>Account:</span> <strong class="text-white">$50,000</strong></div>
                             <div class="flex justify-between text-gray-300"><span>Max Risk:</span> <strong class="text-red-400">$200</strong></div>
                             <div class="flex justify-between text-gray-300"><span>Sweep:</span> <strong id="snap-sweep" class="text-accent">WAITING</strong></div>
-                            <div class="flex justify-between text-gray-300"><span>Contracts:</span> <strong class="text-white">6</strong></div>
+                            <div class="flex justify-between text-gray-300"><span>Contracts:</span> <strong class="text-white">2</strong></div>
                             <div class="flex justify-between text-gray-300"><span>Target R:</span> <strong class="text-tealaccent">1.0 R</strong></div>
                         </div>
                     </div>
 
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex items-start space-x-3 text-xs text-gray-400">
                         <i class="fa-solid fa-circle-info text-tealaccent mt-0.5"></i>
-                        <span data-translate="info_footer">In v2.8.22, the AI Coach panel is dedicated exclusively to trade logic, while all risk metrics are managed through the dedicated Snapshot.</span>
+                        <span data-translate="info_footer">In v2.8.34, active sweep levels are dynamically filtered to show only the nearest relevant sweep, keeping the chart completely clean.</span>
                     </div>
                 </div>
             </div>
@@ -206,17 +206,17 @@
                     <div>
                         <div class="text-accent text-2xl mb-3"><i class="fa-solid fa-bullseye"></i></div>
                         <h3 class="text-white font-bold text-base mb-2" data-translate="card1_title">What does the indicator do?</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card1_desc">Automatically scans higher timeframes (15m), identifies liquidity pools (BSL / SSL), captures sweeps, and builds execution plans with risk calculations.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card1_desc">Dynamically tracks local liquidity levels (SSL/BSL), captures clean sweeps, and builds execution plans with 1:1 R:R and direct on-chart metrics.</p>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-tealaccent font-medium">Module: HTF Liquidity Feed</div>
+                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-tealaccent font-medium">Module: Local Liquidity Rays</div>
                 </div>
                 <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-tealaccent text-2xl mb-3"><i class="fa-solid fa-shield-halved"></i></div>
                         <h3 class="text-white font-bold text-base mb-2" data-translate="card2_title">Why is it important?</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card2_desc">Eliminates lower-timeframe emotional noise, strictly caps risk ($200), and protects stop-losses from market noise using volatility floors.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card2_desc">Eliminates chart clutter by auto-cleaning finished patterns on TP/SL hits and retaining only a single previous result for review.</p>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-accent font-medium">Module: Risk & Position Engine</div>
+                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-accent font-medium">Module: Risk & Cleanup Engine</div>
                 </div>
                 <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
                     <div>
@@ -229,42 +229,71 @@
             </div>
         </div>
 
-        <!-- Tab 3: Code (With Edit / Manual Input & Copy) -->
+        <!-- Tab 3: Code (With Edit / Manual Input, Save Button & Copy) -->
         <div id="tab-code" class="tab-content hidden flex flex-col space-y-4">
             <div class="flex items-center justify-between bg-cardbg px-4 py-3 rounded-t-xl border border-gray-800 border-b-0">
-                <div class="text-sm font-mono text-gray-300">LMC_Liquidity_Sweep_Engine_v2.8.22.pine</div>
+                <div class="text-sm font-mono text-gray-300">LMC_Liquidity_Sweep_Engine_v2.8.34.pine</div>
                 <div class="flex items-center space-x-2">
                     <!-- Edit / Manual Input Button -->
                     <button onclick="toggleEditCode()" id="edit-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs rounded-xl transition flex items-center space-x-1.5 border border-gray-700">
-                        <i class="fa-solid fa-pen-to-square"></i> <span id="edit-text">Edit Code</span>
+                        <i class="fa-solid fa-pen-to-square"></i> <span id="edit-text" data-translate="edit_code">Edit Code</span>
+                    </button>
+                    <!-- Save Code Button (Hidden until Edit mode is active) -->
+                    <button onclick="saveCode()" id="save-code-btn" class="px-3.5 py-1.5 bg-tealaccent hover:bg-teal-400 text-darkbg font-bold text-xs rounded-xl transition hidden flex items-center space-x-1.5 shadow-md">
+                        <i class="fa-solid fa-floppy-disk"></i> <span data-translate="save_code">Save Code</span>
                     </button>
                     <!-- Copy Button -->
                     <button onclick="copyCode()" class="px-3.5 py-1.5 bg-accent hover:bg-yellow-500 text-darkbg font-bold text-xs rounded-xl transition flex items-center space-x-1.5">
-                        <i class="fa-solid fa-copy"></i> <span id="copy-text">Copy Code</span>
+                        <i class="fa-solid fa-copy"></i> <span id="copy-text" data-translate="copy_code">Copy Code</span>
                     </button>
                 </div>
             </div>
-            <div class="bg-cardbg border border-gray-800 rounded-b-2xl p-4 overflow-x-auto max-h-[500px]">
+            <div class="bg-cardbg border border-gray-800 rounded-b-2xl p-4 overflow-x-auto max-h-[500px] relative">
+                <!-- Save Status Notification Overlay -->
+                <div id="code-save-status" class="absolute top-6 right-6 bg-tealaccent text-darkbg font-bold px-4 py-2 rounded-xl text-xs shadow-lg hidden flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-check"></i> <span data-translate="code_saved_msg">Code saved successfully!</span>
+                </div>
+
                 <!-- View Mode (Pre) -->
                 <pre class="text-xs font-mono text-gray-300 leading-relaxed" id="pine-code">//@version=6
-indicator("LMC Liquidity Sweep Engine v2.8.22", shorttitle="LMC LSE", overlay=true, scale=scale.none, max_lines_count=350, max_labels_count=350, max_boxes_count=180, max_bars_back=1500)
+indicator("LMC Liquidity Sweep Engine v2.8.34", shorttitle="LMC LSE", overlay=true, scale=scale.none, max_lines_count=20, max_labels_count=20, max_boxes_count=20, max_bars_back=1500)
 //=============================================================================
-// LMC LIQUIDITY SWEEP ENGINE v2.8.22
-// PROFESSIONAL MINIMALIST ENGINE & PERSISTENT HISTORY
-//
-// Market Context -> Confirmation -> Execution -> Risk -> AI Coach
-// Learn Why You Earn.
+// LMC LIQUIDITY SWEEP ENGINE v2.8.34
+// SINGLE ACTIVE SWEEP LABEL CLEANUP & 1:1 R:R STABLE RELEASE
 //=============================================================================
 
 string G_LEVELS = "Liquidity Levels"
-liquidityTimeframe = input.timeframe("15", "Liquidity Timeframe", group=G_LEVELS)
-pivotStrength = input.int(3, "Liquidity Pivot Strength", minval=2, maxval=20, group=G_LEVELS)
+pivotStrength = input.int(3, "Pivot Strength (Local)", minval=2, maxval=20, group=G_LEVELS)
 
 string G_DISP = "Displacement Bars"
 showDisplacement = input.bool(true, "Highlight Displacement Bars", group=G_DISP)
 displacementMult = input.float(1.65, "Displacement Multiplier", minval=1.2, maxval=5.0, step=0.05, group=G_DISP)
 
-barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displacementMult) ? color.rgb(255, 230, 0) : na)
+string G_PATTERN = "Execution Pattern"
+entryBufferTicks = input.int(1, "Entry Buffer Ticks", minval=0, maxval=20, group=G_PATTERN)
+stopBufferTicks = input.int(2, "Stop Buffer Ticks", minval=0, maxval=100, group=G_PATTERN)
+leftOffsetBars = input.int(6, "Box Left Offset Bars", minval=2, maxval=20, group=G_PATTERN)
+rightWidthBars = input.int(4, "Box Right Width Bars", minval=2, maxval=20, group=G_PATTERN)
+riskRewardRatio = input.float(1.0, "Risk / Reward Ratio (TP)", minval=0.5, maxval=5.0, step=0.1, group=G_PATTERN)
+
+string G_RISK = "Position & Minimum Stop"
+riskCap = input.float(200.0, "Risk Cap, $", minval=1.0, step=5.0, group=G_RISK)
+dollarsPerPoint = input.float(2.0, "Dollars Per Point / Contract", minval=0.01, step=0.25, group=G_RISK)
+maximumContracts = input.int(20, "Maximum Contracts", minval=1, maxval=100, group=G_RISK)
+fixedMinimumStop = input.float(8.0, "Absolute Minimum Stop, Points", minval=0.0, step=0.25, group=G_RISK)
+
+color C_BLACK = color.rgb(5, 9, 13)
+color C_WHITE = color.rgb(245, 247, 248)
+color C_RED = color.rgb(238, 72, 82)
+color C_GREEN = color.rgb(48, 201, 139)
+color C_YELLOW = color.rgb(255, 230, 0)
+color C_TEAL = color.rgb(0, 210, 185)
+color C_MAGENTA = color.rgb(210, 55, 115)
+
+float tickSize = math.max(syminfo.mintick, 0.0000001)
+f_price(float value) => str.tostring(value, format.mintick)
+f_number(float value) => str.tostring(value, "#.##")
+f_money(float value) => "$" + str.tostring(value, "#.##")
 </pre>
                 <!-- Edit Mode (Textarea - Hidden by default) -->
                 <textarea id="pine-textarea" class="w-full h-96 bg-darkbg border border-gray-700 rounded-xl p-4 text-xs font-mono text-gray-200 focus:outline-none focus:border-accent hidden resize-y"></textarea>
@@ -275,7 +304,7 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
         <div id="tab-notes" class="tab-content hidden flex flex-col space-y-6">
             <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl space-y-4 shadow-xl">
                 <h3 class="text-white font-bold text-lg flex items-center"><i class="fa-solid fa-pen-to-square text-accent mr-2"></i> <span data-translate="notes_title">Developer & Trader Journal</span></h3>
-                <textarea id="trader-note" class="w-full sm:w-3/4 h-36 bg-darkbg border border-gray-800 rounded-xl p-4 text-sm text-gray-200 focus:outline-none focus:border-accent resize-none shadow-inner" placeholder="Enter your notes or improvement plans here...">Note from 02.11.2026: Integrated interactive HUD simulator and manual Pine Script editing on custom Vercel domain.</textarea>
+                <textarea id="trader-note" class="w-full sm:w-3/4 h-36 bg-darkbg border border-gray-800 rounded-xl p-4 text-sm text-gray-200 focus:outline-none focus:border-accent resize-none shadow-inner" placeholder="Enter your notes or improvement plans here...">Note from 02.11.2026: Version v2.8.34 stabilized. Chart fully cleaned, dynamic local liquidity rays operational, direct on-chart labels with save confirmation.</textarea>
                 <div>
                     <button onclick="saveNote()" class="px-4 py-2.5 bg-tealaccent text-darkbg font-bold text-xs rounded-xl hover:bg-teal-400 transition shadow-md">
                         <i class="fa-solid fa-floppy-disk mr-1"></i> <span data-translate="btn_save">Save Note</span>
@@ -316,11 +345,11 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
                 lbl_pos: "3. HUD POSITION IN SETTINGS",
                 btn_reset: "Reset Scenario",
                 render_title: "TRADINGVIEW RENDER HUD",
-                info_footer: "In v2.8.22, the AI Coach panel is dedicated exclusively to trade logic, while all risk metrics are managed through the dedicated Snapshot.",
+                info_footer: "In v2.8.34, active sweep levels are dynamically filtered to show only the nearest relevant sweep, keeping the chart completely clean.",
                 card1_title: "What does the indicator do?",
-                card1_desc: "Automatically scans higher timeframes (15m), identifies liquidity pools (BSL / SSL), captures sweeps, and builds execution plans with risk calculations.",
+                card1_desc: "Dynamically tracks local liquidity levels (SSL/BSL), captures clean sweeps, and builds execution plans with 1:1 R:R and direct on-chart metrics.",
                 card2_title: "Why is it important?",
-                card2_desc: "Eliminates lower-timeframe emotional noise, strictly caps risk ($200), and protects stop-losses from market noise using volatility floors.",
+                card2_desc: "Eliminates chart clutter by auto-cleaning finished patterns on TP/SL hits and retaining only a single previous result for review.",
                 card3_title: "Institutional Impulses",
                 card3_desc: "Displacement bar detector automatically highlights aggressive candles (1.65x+ average range) in yellow to indicate smart money participation.",
                 notes_title: "Developer & Trader Journal",
@@ -328,8 +357,10 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
                 saved_msg: "Successfully saved!",
                 edit_code: "Edit Code",
                 view_code: "View Code",
+                save_code: "Save Code",
                 copy_code: "Copy Code",
-                copied_code: "Copied!"
+                copied_code: "Copied!",
+                code_saved_msg: "Code saved successfully!"
             },
             ru: {
                 sub_title: "Платформа исполнения сделок ICT и визуальной отладки",
@@ -350,11 +381,11 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
                 lbl_pos: "3. ПОЗИЦИЯ HUD В НАСТРОЙКАХ",
                 btn_reset: "Сбросить сценарий",
                 render_title: "ПРЕДПРОСМОТР TRADINGVIEW HUD",
-                info_footer: "В версии v2.8.22 панель AI Coach отдана под логику сделки, а весь риск вынесен в Snapshot.",
+                info_footer: "В версии v2.8.34 уровни ликвидности динамически фильтруются, отображая только ближайший релевантный срез.",
                 card1_title: "Что делает индикатор?",
-                card1_desc: "Автоматически сканирует старшие таймфреймы (15m), находит пулы ликвидности (BSL / SSL), фиксирует их проколы и строит планы входов.",
+                card1_desc: "Динамически отслеживает локальные уровни ликвидности (SSL/BSL), фиксирует проколы и строит план входа с соотношением 1:1 R:R.",
                 card2_title: "Почему это важно?",
-                card2_desc: "Исключает эмоциональный шум, жестко контролирует риск-кап ($200) и защищает стоп-лосс от шума с помощью волатильных полов.",
+                card2_desc: "Убирает визуальный мусор с графика за счет автоочистки отработанных паттернов по TP/SL и хранения лишь одного предыдущего результата.",
                 card3_title: "Институциональные импульсы",
                 card3_desc: "Детектор Displacement-баров выделяет мощные свечи в 1.65+ раз больше средних желтым цветом для отслеживания умных денег.",
                 notes_title: "Рабочий журнал разработчика и трейдера",
@@ -362,8 +393,10 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
                 saved_msg: "Сохранено успешно!",
                 edit_code: "Изменить код",
                 view_code: "Просмотр кода",
+                save_code: "Сохранить код",
                 copy_code: "Копировать код",
-                copied_code: "Скопировано!"
+                copied_code: "Скопировано!",
+                code_saved_msg: "Код успешно сохранен!"
             }
         };
 
@@ -378,10 +411,13 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
                 }
             });
 
-            // Update dynamic button texts
             const editBtnText = document.getElementById('edit-text');
             if(editBtnText) {
                 editBtnText.innerText = isEditing ? translations[currentLang]['view_code'] : translations[currentLang]['edit_code'];
+            }
+            const saveCodeBtnText = document.querySelector('#save-code-btn span');
+            if(saveCodeBtnText) {
+                saveCodeBtnText.innerText = translations[currentLang]['save_code'];
             }
             const copyBtnText = document.getElementById('copy-text');
             if(copyBtnText && copyBtnText.innerText !== translations['en']['copied_code'] && copyBtnText.innerText !== translations['ru']['copied_code']) {
@@ -402,25 +438,41 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
             activeBtn.classList.add('bg-accent', 'text-darkbg', 'shadow-md');
         }
 
-        // Code Edit / Manual Input Logic
+        // Code Edit & Save Logic
         let isEditing = false;
         function toggleEditCode() {
             isEditing = !isEditing;
             const pre = document.getElementById('pine-code');
             const textarea = document.getElementById('pine-textarea');
             const editText = document.getElementById('edit-text');
+            const saveBtn = document.getElementById('save-code-btn');
 
             if(isEditing) {
                 textarea.value = pre.innerText;
                 pre.classList.add('hidden');
                 textarea.classList.remove('hidden');
+                saveBtn.classList.remove('hidden');
                 editText.innerText = translations[currentLang]['view_code'];
             } else {
                 pre.innerText = textarea.value;
                 textarea.classList.add('hidden');
                 pre.classList.remove('hidden');
+                saveBtn.classList.add('hidden');
                 editText.innerText = translations[currentLang]['edit_code'];
             }
+        }
+
+        function saveCode() {
+            const textarea = document.getElementById('pine-textarea');
+            const pre = document.getElementById('pine-code');
+            pre.innerText = textarea.value;
+
+            // Show success status notification
+            const status = document.getElementById('code-save-status');
+            status.classList.remove('hidden');
+            setTimeout(() => {
+                status.classList.add('hidden');
+            }, 2500);
         }
 
         // Simulator Logic
@@ -439,7 +491,7 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
             if(type === 'none') {
                 banner.className = "w-full bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-md flex items-center justify-center space-x-2 transition-all";
                 bannerText.innerText = "LMC AI COACH — MONITORING SWEEPS";
-                headerState.innerText = "AWAITING SWEEP";
+                headerState.innerText = "STABLE RELEASE";
                 snapSweep.innerText = "WAITING";
                 snapStatus.innerText = "IDLE";
                 snapStatus.className = "text-tealaccent font-bold";
