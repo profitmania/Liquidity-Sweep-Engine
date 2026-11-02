@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="dark">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,12 @@
             }
         }
     </script>
-    <!-- FontAwesome для иконок -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-darkbg text-gray-100 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Шапка приложения -->
+    <!-- Header -->
     <header class="border-b border-gray-800 bg-cardbg/90 backdrop-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-lg">
         <div class="flex items-center space-x-3">
             <div class="bg-accent/10 border border-accent/30 text-accent p-2.5 rounded-xl text-xl font-bold flex items-center justify-center">
@@ -37,94 +37,80 @@
                     <h1 class="text-base font-bold tracking-wide text-white">LIVE MARKET COACH</h1>
                     <span class="px-2 py-0.5 bg-tealaccent/10 border border-tealaccent/30 text-tealaccent text-[10px] font-bold rounded-md">v2.8.22</span>
                 </div>
-                <p class="text-xs text-gray-400">ICT Execution Engine & Visual Debugging Suite</p>
+                <p class="text-xs text-gray-400" data-translate="sub_title">ICT Execution Engine & Visual Debugging Suite</p>
             </div>
         </div>
         <div class="flex items-center space-x-3">
+            <!-- Language Switcher Button -->
+            <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-700 text-gray-200 text-xs font-semibold rounded-xl border border-gray-700 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-globe text-accent"></i> <span id="lang-text">RU / EN</span>
+            </button>
             <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-darkbg border border-gray-800 rounded-lg text-xs text-gray-300">
                 <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                <span>STATE: <strong class="text-accent" id="header-state">AWAITING SWEEP</strong></span>
+                <span><span data-translate="state_label">STATE</span>: <strong class="text-accent" id="header-state">AWAITING SWEEP</strong></span>
             </div>
             <a href="https://gemini.google.com/notebook/f14d363c-43f3-4432-b14e-ee52ad2a15e6" target="_blank" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs rounded-xl transition flex items-center space-x-1.5 shadow-md">
-                <i class="fa-solid fa-code mr-1"></i> <span>Pine Script Code</span>
+                <i class="fa-solid fa-code mr-1"></i> <span>NotebookLM</span>
             </a>
         </div>
     </header>
 
-    <!-- Основное содержимое -->
+    <!-- Main Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-6 flex flex-col space-y-6">
 
-        <!-- Навигация по вкладкам дашборда -->
+        <!-- Navigation Tabs -->
         <div class="flex space-x-2 border-b border-gray-800 pb-2 overflow-x-auto">
             <button onclick="switchTab('simulator')" id="btn-simulator" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-accent text-darkbg transition flex items-center space-x-2 shadow-md">
-                <i class="fa-solid fa-sliders"></i> <span>Интерактивный симулятор HUD</span>
+                <i class="fa-solid fa-sliders"></i> <span data-translate="tab_sim">Interactive HUD Simulator</span>
             </button>
             <button onclick="switchTab('overview')" id="btn-overview" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-300 hover:bg-gray-800 transition flex items-center space-x-2 border border-gray-800">
-                <i class="fa-solid fa-compass"></i> <span>Концепция & Архитектура</span>
+                <i class="fa-solid fa-compass"></i> <span data-translate="tab_overview">Concept & Architecture</span>
             </button>
             <button onclick="switchTab('code')" id="btn-code" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-300 hover:bg-gray-800 transition flex items-center space-x-2 border border-gray-800">
-                <i class="fa-solid fa-file-code"></i> <span>Исходный код (Pine v6)</span>
+                <i class="fa-solid fa-file-code"></i> <span data-translate="tab_code">Pine Script v6 Code</span>
             </button>
             <button onclick="switchTab('notes')" id="btn-notes" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-300 hover:bg-gray-800 transition flex items-center space-x-2 border border-gray-800">
-                <i class="fa-solid fa-note-sticky"></i> <span>Журнал трейдера</span>
+                <i class="fa-solid fa-note-sticky"></i> <span data-translate="tab_notes">Trader's Journal</span>
             </button>
         </div>
 
-        <!-- Вкладка 1: Интерактивный симулятор & Трекер версий (Основной вид с вашего скриншота) -->
+        <!-- Tab 1: Simulator -->
         <div id="tab-simulator" class="tab-content flex flex-col space-y-6">
 
             <!-- Global Progress Tracker -->
             <div class="bg-cardbg border border-gray-800/80 p-6 rounded-2xl shadow-xl space-y-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                        <span class="text-[10px] font-bold text-tealaccent uppercase tracking-widest">Development Roadmap & Architecture</span>
-                        <h2 class="text-lg font-bold text-white">Global Progress Tracker</h2>
+                        <span class="text-[10px] font-bold text-tealaccent uppercase tracking-widest" data-translate="roadmap_sub">Development Roadmap & Architecture</span>
+                        <h2 class="text-lg font-bold text-white" data-translate="roadmap_title">Global Progress Tracker</h2>
                     </div>
                     <div class="text-xs text-gray-400 font-mono">
-                        Current Milestone: <strong class="text-tealaccent">Phase 4 / 5 Complete (88%)</strong>
+                        <span data-translate="milestone_text">Current Milestone</span>: <strong class="text-tealaccent">Phase 4 / 5 Complete (88%)</strong>
                     </div>
                 </div>
-                <!-- Progress Line -->
                 <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
                     <div class="bg-gradient-to-r from-tealaccent to-accent h-full w-[88%] rounded-full"></div>
                 </div>
-                <!-- Version Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-2">
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-300">v1.0.0</span>
-                            <i class="fa-solid fa-circle-check text-tealaccent text-xs"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-gray-300">v1.0.0</span><i class="fa-solid fa-circle-check text-tealaccent text-xs"></i></div>
                         <p class="text-[11px] text-gray-400 leading-tight">Liquidity Sweeps: SSL & BSL pivot line detection.</p>
                     </div>
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-300">v1.7.1</span>
-                            <i class="fa-solid fa-circle-check text-tealaccent text-xs"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-gray-300">v1.7.1</span><i class="fa-solid fa-circle-check text-tealaccent text-xs"></i></div>
                         <p class="text-[11px] text-gray-400 leading-tight">AI Coach HUD: Top center narrative banner.</p>
                     </div>
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-300">v2.0.0</span>
-                            <i class="fa-solid fa-circle-check text-tealaccent text-xs"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-gray-300">v2.0.0</span><i class="fa-solid fa-circle-check text-tealaccent text-xs"></i></div>
                         <p class="text-[11px] text-gray-400 leading-tight">Displacement Bar: 1.65x Yellow Candle Filter.</p>
                     </div>
-                    <!-- ACTIVE VERSION -->
                     <div class="bg-darkbg border-2 border-accent p-3.5 rounded-xl flex flex-col justify-between shadow-lg relative overflow-hidden">
                         <div class="absolute top-0 right-0 bg-accent text-darkbg text-[9px] font-bold px-2 py-0.5 rounded-bl">ACTIVE</div>
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-accent">v2.8.22</span>
-                            <i class="fa-solid fa-wand-magic-sparkles text-accent text-xs"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-accent">v2.8.22</span><i class="fa-solid fa-wand-magic-sparkles text-accent text-xs"></i></div>
                         <p class="text-[11px] text-gray-200 leading-tight">Minimalist HUD, Clean History & Risk Snapshot.</p>
                     </div>
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex flex-col justify-between opacity-70">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold text-gray-400">v3.0.0</span>
-                            <i class="fa-regular fa-clock text-gray-500 text-xs"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-gray-400">v3.0.0</span><i class="fa-regular fa-clock text-gray-500 text-xs"></i></div>
                         <p class="text-[11px] text-gray-500 leading-tight">Auto-Execution Router & Webhook Integrations.</p>
                     </div>
                 </div>
@@ -132,18 +118,16 @@
 
             <!-- Simulator & Render Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                
-                <!-- Левая панель: Execution Logic Testing (Simulator Controls) -->
+                <!-- Left: Simulator Controls -->
                 <div class="lg:col-span-5 bg-cardbg border border-gray-800/80 p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-6">
                     <div class="space-y-5">
                         <div>
-                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest">Execution Logic Testing</span>
-                            <h3 class="text-base font-bold text-white">Market Scenario Simulator</h3>
+                            <span class="text-[10px] font-bold text-accent uppercase tracking-widest" data-translate="sim_sub">Execution Logic Testing</span>
+                            <h3 class="text-base font-bold text-white" data-translate="sim_title">Market Scenario Simulator</h3>
                         </div>
 
-                        <!-- 1. Liquidity Sweep Event -->
                         <div class="space-y-2">
-                            <label class="text-xs font-medium text-gray-300">1. LIQUIDITY SWEEP EVENT</label>
+                            <label class="text-xs font-medium text-gray-300" data-translate="lbl_sweep">1. LIQUIDITY SWEEP EVENT</label>
                             <div class="grid grid-cols-3 gap-2">
                                 <button onclick="setSweep('none')" id="sw-none" class="sweep-btn py-2 px-3 rounded-xl text-xs font-semibold bg-accent text-darkbg transition">NONE</button>
                                 <button onclick="setSweep('ssl')" id="sw-ssl" class="sweep-btn py-2 px-3 rounded-xl text-xs font-semibold bg-darkbg border border-gray-800 text-gray-300 hover:bg-gray-800 transition">SSL (BUY)</button>
@@ -151,18 +135,16 @@
                             </div>
                         </div>
 
-                        <!-- 2. Displacement Bar Filter -->
                         <div class="space-y-2">
-                            <label class="text-xs font-medium text-gray-300">2. DISPLACEMENT BAR (1.65x+ Filter)</label>
+                            <label class="text-xs font-medium text-gray-300" data-translate="lbl_disp">2. DISPLACEMENT BAR (1.65x+ Filter)</label>
                             <div class="grid grid-cols-2 gap-2">
-                                <button onclick="setDisp(false)" id="disp-norm" class="disp-btn py-2 px-3 rounded-xl text-xs font-semibold bg-darkbg border border-gray-800 text-gray-300 hover:bg-gray-800 transition">NORMAL (Small)</button>
-                                <button onclick="setDisp(true)" id="disp-yellow" class="disp-btn py-2 px-3 rounded-xl text-xs font-semibold bg-accent text-darkbg transition">DISPLACEMENT (Yellow)</button>
+                                <button onclick="setDisp(false)" id="disp-norm" class="disp-btn py-2 px-3 rounded-xl text-xs font-semibold bg-darkbg border border-gray-800 text-gray-300 hover:bg-gray-800 transition" data-translate="btn_normal">NORMAL (Small)</button>
+                                <button onclick="setDisp(true)" id="disp-yellow" class="disp-btn py-2 px-3 rounded-xl text-xs font-semibold bg-accent text-darkbg transition" data-translate="btn_disp">DISPLACEMENT (Yellow)</button>
                             </div>
                         </div>
 
-                        <!-- 3. HUD Position -->
                         <div class="space-y-2">
-                            <label class="text-xs font-medium text-gray-300">3. HUD POSITION IN SETTINGS</label>
+                            <label class="text-xs font-medium text-gray-300" data-translate="lbl_pos">3. HUD POSITION IN SETTINGS</label>
                             <select id="hud-pos" onchange="updateHUDPos()" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2.5 text-xs text-gray-200 focus:outline-none focus:border-accent">
                                 <option value="Top Center (Default)">Top Center (Default)</option>
                                 <option value="Top Right">Top Right</option>
@@ -172,27 +154,23 @@
                     </div>
 
                     <button onclick="resetSimulator()" class="w-full py-2.5 bg-darkbg border border-gray-800 hover:border-gray-700 text-gray-300 text-xs font-medium rounded-xl transition flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-rotate-right"></i> <span>Reset Scenario</span>
+                        <i class="fa-solid fa-rotate-right"></i> <span data-translate="btn_reset">Reset Scenario</span>
                     </button>
                 </div>
 
-                <!-- Правая панель: TradingView Render HUD (Live Preview) -->
+                <!-- Right: TradingView Render HUD -->
                 <div class="lg:col-span-7 bg-cardbg border border-gray-800/80 p-6 rounded-2xl shadow-xl flex flex-col justify-between space-y-4">
                     <div class="flex items-center justify-between border-b border-gray-800/60 pb-3">
-                        <span class="text-xs font-bold text-gray-400">TRADINGVIEW RENDER HUD</span>
+                        <span class="text-xs font-bold text-gray-400" data-translate="render_title">TRADINGVIEW RENDER HUD</span>
                         <span class="text-[11px] font-mono text-tealaccent" id="preview-mode-tag">v2.8.22 Dynamic Alignment</span>
                     </div>
 
-                    <!-- Симулятор графика -->
                     <div class="bg-darkbg border border-gray-800 rounded-xl p-5 relative min-h-[260px] flex flex-col justify-between overflow-hidden">
-                        
-                        <!-- AI Coach Banner -->
                         <div id="sim-banner" class="w-full bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-md flex items-center justify-center space-x-2 transition-all">
                             <i class="fa-solid fa-bolt text-accent"></i>
                             <span id="banner-text">LMC AI COACH — MONITORING SWEEPS</span>
                         </div>
 
-                        <!-- Mock Candles Area -->
                         <div class="flex items-end justify-center space-x-4 py-6 my-auto">
                             <div class="w-3 h-12 bg-red-500/80 rounded-sm"></div>
                             <div class="w-3 h-20 bg-red-500/80 rounded-sm"></div>
@@ -200,7 +178,6 @@
                             <div class="w-3 h-16 bg-tealaccent/80 rounded-sm"></div>
                         </div>
 
-                        <!-- Market Snapshot Box (Правый нижний угол) -->
                         <div class="absolute bottom-4 right-4 bg-cardbg/95 border border-gray-800 p-3 rounded-xl shadow-lg w-48 text-[11px] font-mono space-y-1">
                             <div class="flex justify-between border-b border-gray-800 pb-1 text-[10px] text-gray-400">
                                 <span>MARKET SNAPSHOT</span>
@@ -214,55 +191,61 @@
                         </div>
                     </div>
 
-                    <!-- Информационная сноска -->
                     <div class="bg-darkbg/60 border border-gray-800 p-3.5 rounded-xl flex items-start space-x-3 text-xs text-gray-400">
                         <i class="fa-solid fa-circle-info text-tealaccent mt-0.5"></i>
-                        <span>В версии v2.8.22 панель AI Coach вынесена под логику сделки, а весь риск управляется через выделенный Snapshot.</span>
+                        <span data-translate="info_footer">In v2.8.22, the AI Coach panel is dedicated exclusively to trade logic, while all risk metrics are managed through the dedicated Snapshot.</span>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Вкладка 2: Концепция & Архитектура -->
+        <!-- Tab 2: Overview -->
         <div id="tab-overview" class="tab-content hidden flex flex-col space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-accent text-2xl mb-3"><i class="fa-solid fa-bullseye"></i></div>
-                        <h3 class="text-white font-bold text-base mb-2">Что делает индикатор?</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Сканирует старшие таймфреймы (15m), находит пулы ликвидности (BSL / SSL), фиксирует их проколы (sweeps) и строит готовые планы входов с расчетом риска.</p>
+                        <h3 class="text-white font-bold text-base mb-2" data-translate="card1_title">What does the indicator do?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card1_desc">Automatically scans higher timeframes (15m), identifies liquidity pools (BSL / SSL), captures sweeps, and builds execution plans with risk calculations.</p>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-tealaccent font-medium">Модуль: HTF Liquidity Feed</div>
+                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-tealaccent font-medium">Module: HTF Liquidity Feed</div>
                 </div>
                 <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-tealaccent text-2xl mb-3"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3 class="text-white font-bold text-base mb-2">Почему это важно?</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Исключает эмоциональный шум младших таймфреймов, жестко контролирует риск-кап ($200) и защищает стоп-лосс от рыночного шума с помощью волатильных полов.</p>
+                        <h3 class="text-white font-bold text-base mb-2" data-translate="card2_title">Why is it important?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card2_desc">Eliminates lower-timeframe emotional noise, strictly caps risk ($200), and protects stop-losses from market noise using volatility floors.</p>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-accent font-medium">Модуль: Risk & Position Engine</div>
+                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-accent font-medium">Module: Risk & Position Engine</div>
                 </div>
                 <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
                     <div>
                         <div class="text-yellow-400 text-2xl mb-3"><i class="fa-solid fa-bolt"></i></div>
-                        <h3 class="text-white font-bold text-base mb-2">Институциональные импульсы</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Детектор Displacement-баров автоматически выделяет мощные свечи (в 1.65+ раз больше средних) желтым цветом, указывая на агрессивное участие маркетмейкеров.</p>
+                        <h3 class="text-white font-bold text-base mb-2" data-translate="card3_title">Institutional Impulses</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-translate="card3_desc">Displacement bar detector automatically highlights aggressive candles (1.65x+ average range) in yellow to indicate smart money participation.</p>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-yellow-400 font-medium">Модуль: Displacement Detector</div>
+                    <div class="mt-4 pt-4 border-t border-gray-800/60 text-xs text-yellow-400 font-medium">Module: Displacement Detector</div>
                 </div>
             </div>
         </div>
 
-        <!-- Вкладка 3: Исходный код -->
+        <!-- Tab 3: Code (With Edit / Manual Input & Copy) -->
         <div id="tab-code" class="tab-content hidden flex flex-col space-y-4">
             <div class="flex items-center justify-between bg-cardbg px-4 py-3 rounded-t-xl border border-gray-800 border-b-0">
                 <div class="text-sm font-mono text-gray-300">LMC_Liquidity_Sweep_Engine_v2.8.22.pine</div>
-                <button onclick="copyCode()" class="px-3.5 py-1.5 bg-accent hover:bg-yellow-500 text-darkbg font-bold text-xs rounded-xl transition flex items-center space-x-1.5">
-                    <i class="fa-solid fa-copy"></i> <span id="copy-text">Копировать код</span>
-                </button>
+                <div class="flex items-center space-x-2">
+                    <!-- Edit / Manual Input Button -->
+                    <button onclick="toggleEditCode()" id="edit-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs rounded-xl transition flex items-center space-x-1.5 border border-gray-700">
+                        <i class="fa-solid fa-pen-to-square"></i> <span id="edit-text">Edit Code</span>
+                    </button>
+                    <!-- Copy Button -->
+                    <button onclick="copyCode()" class="px-3.5 py-1.5 bg-accent hover:bg-yellow-500 text-darkbg font-bold text-xs rounded-xl transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-copy"></i> <span id="copy-text">Copy Code</span>
+                    </button>
+                </div>
             </div>
             <div class="bg-cardbg border border-gray-800 rounded-b-2xl p-4 overflow-x-auto max-h-[500px]">
+                <!-- View Mode (Pre) -->
                 <pre class="text-xs font-mono text-gray-300 leading-relaxed" id="pine-code">//@version=6
 indicator("LMC Liquidity Sweep Engine v2.8.22", shorttitle="LMC LSE", overlay=true, scale=scale.none, max_lines_count=350, max_labels_count=350, max_boxes_count=180, max_bars_back=1500)
 //=============================================================================
@@ -281,35 +264,131 @@ string G_DISP = "Displacement Bars"
 showDisplacement = input.bool(true, "Highlight Displacement Bars", group=G_DISP)
 displacementMult = input.float(1.65, "Displacement Multiplier", minval=1.2, maxval=5.0, step=0.05, group=G_DISP)
 
-// [Код полностью синхронизирован с версией v2.8.22]
 barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displacementMult) ? color.rgb(255, 230, 0) : na)
 </pre>
+                <!-- Edit Mode (Textarea - Hidden by default) -->
+                <textarea id="pine-textarea" class="w-full h-96 bg-darkbg border border-gray-700 rounded-xl p-4 text-xs font-mono text-gray-200 focus:outline-none focus:border-accent hidden resize-y"></textarea>
             </div>
         </div>
 
-        <!-- Вкладка 4: Заметки трейдера -->
+        <!-- Tab 4: Trader's Notes -->
         <div id="tab-notes" class="tab-content hidden flex flex-col space-y-6">
             <div class="bg-cardbg border border-gray-800 p-6 rounded-2xl space-y-4 shadow-xl">
-                <h3 class="text-white font-bold text-lg flex items-center"><i class="fa-solid fa-pen-to-square text-accent mr-2"></i> Рабочий журнал & Заметки разработчика</h3>
-                <textarea id="trader-note" class="w-full sm:w-3/4 h-36 bg-darkbg border border-gray-800 rounded-xl p-4 text-sm text-gray-200 focus:outline-none focus:border-accent resize-none shadow-inner" placeholder="Введите ваши заметки или планы по улучшению индикатора здесь...">Заметка от 02.11.2026: Интегрировали интерактивный симулятор HUD в наш дашборд на Vercel. Всё работает отлично, переносим на собственный домен.</textarea>
+                <h3 class="text-white font-bold text-lg flex items-center"><i class="fa-solid fa-pen-to-square text-accent mr-2"></i> <span data-translate="notes_title">Developer & Trader Journal</span></h3>
+                <textarea id="trader-note" class="w-full sm:w-3/4 h-36 bg-darkbg border border-gray-800 rounded-xl p-4 text-sm text-gray-200 focus:outline-none focus:border-accent resize-none shadow-inner" placeholder="Enter your notes or improvement plans here...">Note from 02.11.2026: Integrated interactive HUD simulator and manual Pine Script editing on custom Vercel domain.</textarea>
                 <div>
                     <button onclick="saveNote()" class="px-4 py-2.5 bg-tealaccent text-darkbg font-bold text-xs rounded-xl hover:bg-teal-400 transition shadow-md">
-                        <i class="fa-solid fa-floppy-disk mr-1"></i> Сохранить заметку
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> <span data-translate="btn_save">Save Note</span>
                     </button>
-                    <span id="save-status" class="ml-3 text-xs text-tealaccent hidden font-semibold">Сохранено успешно!</span>
+                    <span id="save-status" class="ml-3 text-xs text-tealaccent hidden font-semibold" data-translate="saved_msg">Successfully saved!</span>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- Нижний колонтитул -->
+    <!-- Footer -->
     <footer class="border-t border-gray-800 py-4 px-6 text-center text-xs text-gray-500">
         LMC Liquidity Sweep Engine — Built with Gemini API, NotebookLM & Vercel. Learn Why You Earn.
     </footer>
 
-    <!-- JavaScript логика интерактивного симулятора -->
+    <!-- JavaScript & Localization Logic -->
     <script>
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                sub_title: "ICT Execution Engine & Visual Debugging Suite",
+                state_label: "STATE",
+                tab_sim: "Interactive HUD Simulator",
+                tab_overview: "Concept & Architecture",
+                tab_code: "Pine Script v6 Code",
+                tab_notes: "Trader's Journal",
+                roadmap_sub: "Development Roadmap & Architecture",
+                roadmap_title: "Global Progress Tracker",
+                milestone_text: "Current Milestone",
+                sim_sub: "Execution Logic Testing",
+                sim_title: "Market Scenario Simulator",
+                lbl_sweep: "1. LIQUIDITY SWEEP EVENT",
+                lbl_disp: "2. DISPLACEMENT BAR (1.65x+ Filter)",
+                btn_normal: "NORMAL (Small)",
+                btn_disp: "DISPLACEMENT (Yellow)",
+                lbl_pos: "3. HUD POSITION IN SETTINGS",
+                btn_reset: "Reset Scenario",
+                render_title: "TRADINGVIEW RENDER HUD",
+                info_footer: "In v2.8.22, the AI Coach panel is dedicated exclusively to trade logic, while all risk metrics are managed through the dedicated Snapshot.",
+                card1_title: "What does the indicator do?",
+                card1_desc: "Automatically scans higher timeframes (15m), identifies liquidity pools (BSL / SSL), captures sweeps, and builds execution plans with risk calculations.",
+                card2_title: "Why is it important?",
+                card2_desc: "Eliminates lower-timeframe emotional noise, strictly caps risk ($200), and protects stop-losses from market noise using volatility floors.",
+                card3_title: "Institutional Impulses",
+                card3_desc: "Displacement bar detector automatically highlights aggressive candles (1.65x+ average range) in yellow to indicate smart money participation.",
+                notes_title: "Developer & Trader Journal",
+                btn_save: "Save Note",
+                saved_msg: "Successfully saved!",
+                edit_code: "Edit Code",
+                view_code: "View Code",
+                copy_code: "Copy Code",
+                copied_code: "Copied!"
+            },
+            ru: {
+                sub_title: "Платформа исполнения сделок ICT и визуальной отладки",
+                state_label: "СТАТУС",
+                tab_sim: "Интерактивный симулятор HUD",
+                tab_overview: "Концепция и Архитектура",
+                tab_code: "Код Pine Script v6",
+                tab_notes: "Журнал трейдера",
+                roadmap_sub: "Дорожная карта и Архитектура",
+                roadmap_title: "Глобальный трекер прогресса",
+                milestone_text: "Текущий этап",
+                sim_sub: "Тестирование логики входов",
+                sim_title: "Симулятор рыночных сценариев",
+                lbl_sweep: "1. СОБЫТИЕ СЪЕМА ЛИКВИДНОСТИ",
+                lbl_disp: "2. ИМПУЛЬСНЫЙ БАР (Фильтр 1.65x+)",
+                btn_normal: "ОБЫЧНЫЙ (Малый)",
+                btn_disp: "ИМПУЛЬС (Желтый)",
+                lbl_pos: "3. ПОЗИЦИЯ HUD В НАСТРОЙКАХ",
+                btn_reset: "Сбросить сценарий",
+                render_title: "ПРЕДПРОСМОТР TRADINGVIEW HUD",
+                info_footer: "В версии v2.8.22 панель AI Coach отдана под логику сделки, а весь риск вынесен в Snapshot.",
+                card1_title: "Что делает индикатор?",
+                card1_desc: "Автоматически сканирует старшие таймфреймы (15m), находит пулы ликвидности (BSL / SSL), фиксирует их проколы и строит планы входов.",
+                card2_title: "Почему это важно?",
+                card2_desc: "Исключает эмоциональный шум, жестко контролирует риск-кап ($200) и защищает стоп-лосс от шума с помощью волатильных полов.",
+                card3_title: "Институциональные импульсы",
+                card3_desc: "Детектор Displacement-баров выделяет мощные свечи в 1.65+ раз больше средних желтым цветом для отслеживания умных денег.",
+                notes_title: "Рабочий журнал разработчика и трейдера",
+                btn_save: "Сохранить заметку",
+                saved_msg: "Сохранено успешно!",
+                edit_code: "Изменить код",
+                view_code: "Просмотр кода",
+                copy_code: "Копировать код",
+                copied_code: "Скопировано!"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ru' : 'en';
+            document.getElementById('lang-text').innerText = currentLang === 'en' ? 'RU / EN' : 'EN / RU';
+            
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if(translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+
+            // Update dynamic button texts
+            const editBtnText = document.getElementById('edit-text');
+            if(editBtnText) {
+                editBtnText.innerText = isEditing ? translations[currentLang]['view_code'] : translations[currentLang]['edit_code'];
+            }
+            const copyBtnText = document.getElementById('copy-text');
+            if(copyBtnText && copyBtnText.innerText !== translations['en']['copied_code'] && copyBtnText.innerText !== translations['ru']['copied_code']) {
+                copyBtnText.innerText = translations[currentLang]['copy_code'];
+            }
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => {
@@ -323,17 +402,33 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
             activeBtn.classList.add('bg-accent', 'text-darkbg', 'shadow-md');
         }
 
-        // Логика симулятора
-        let currentSweep = 'none';
-        let isYellow = true;
+        // Code Edit / Manual Input Logic
+        let isEditing = false;
+        function toggleEditCode() {
+            isEditing = !isEditing;
+            const pre = document.getElementById('pine-code');
+            const textarea = document.getElementById('pine-textarea');
+            const editText = document.getElementById('edit-text');
 
+            if(isEditing) {
+                textarea.value = pre.innerText;
+                pre.classList.add('hidden');
+                textarea.classList.remove('hidden');
+                editText.innerText = translations[currentLang]['view_code'];
+            } else {
+                pre.innerText = textarea.value;
+                textarea.classList.add('hidden');
+                pre.classList.remove('hidden');
+                editText.innerText = translations[currentLang]['edit_code'];
+            }
+        }
+
+        // Simulator Logic
         function setSweep(type) {
-            currentSweep = type;
             document.querySelectorAll('.sweep-btn').forEach(b => {
                 b.className = "sweep-btn py-2 px-3 rounded-xl text-xs font-semibold bg-darkbg border border-gray-800 text-gray-300 hover:bg-gray-800 transition";
             });
-            const activeBtn = document.getElementById('sw-' + type);
-            activeBtn.className = "sweep-btn py-2 px-3 rounded-xl text-xs font-semibold bg-accent text-darkbg transition shadow-md";
+            document.getElementById('sw-' + type).className = "sweep-btn py-2 px-3 rounded-xl text-xs font-semibold bg-accent text-darkbg transition shadow-md";
 
             const banner = document.getElementById('sim-banner');
             const bannerText = document.getElementById('banner-text');
@@ -366,7 +461,6 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
         }
 
         function setDisp(yellow) {
-            isYellow = yellow;
             const normBtn = document.getElementById('disp-norm');
             const yellBtn = document.getElementById('disp-yellow');
             const mainBar = document.getElementById('sim-main-bar');
@@ -396,11 +490,11 @@ barcolor(showDisplacement and ((high - low) >= ta.sma(high - low, 14) * displace
         }
 
         function copyCode() {
-            const codeText = document.getElementById('pine-code').innerText;
-            navigator.clipboard.writeText(codeText).then(() => {
+            const codeToCopy = isEditing ? document.getElementById('pine-textarea').value : document.getElementById('pine-code').innerText;
+            navigator.clipboard.writeText(codeToCopy).then(() => {
                 const copyText = document.getElementById('copy-text');
-                copyText.innerText = 'Скопировано!';
-                setTimeout(() => { copyText.innerText = 'Копировать код'; }, 2000);
+                copyText.innerText = translations[currentLang]['copied_code'];
+                setTimeout(() => { copyText.innerText = translations[currentLang]['copy_code']; }, 2000);
             });
         }
 
